@@ -10,7 +10,7 @@
 		mapStateToOneOfEnumControlProps,
 		removeId
 	} from "@jsonforms/core"
-	import {DispatchContextKey, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
+	import {JsonFormsDispatchContextKey, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
 	import {createEmptyStyles, defaultStyles} from "../../styles/index.js"
 	import merge from "lodash/merge"
 	import cloneDeep from "lodash/cloneDeep"
@@ -27,7 +27,7 @@
 	    }: ControlElementRendererProps = $props()
 
 	const jsonFormsSubStates = getContext<JsonFormsSubStates>(JsonFormsSubStatesContextKey)
-	const dispatch           = getContext<Dispatch<CoreActions>>(DispatchContextKey)
+	const dispatch           = getContext<Dispatch<CoreActions>>(JsonFormsDispatchContextKey)
 	const parentUserStyles = getContext("styles") || defaultStyles
 
 	if (!jsonFormsSubStates || !dispatch) {

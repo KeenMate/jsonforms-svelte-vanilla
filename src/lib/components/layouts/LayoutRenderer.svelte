@@ -11,9 +11,9 @@
 		mapStateToLayoutProps,
 		removeId
 	} from "@jsonforms/core"
-	import {DispatchContextKey, DispatchRenderer, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
 	import {createEmptyStyles, defaultStyles} from "../../styles/index.js"
 	import merge from "lodash/merge"
+	import {JsonFormsDispatchContextKey, DispatchRenderer, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
 
 	let allProps: ControlElementRendererProps = $props()
 	let {
@@ -28,7 +28,7 @@
 	    } = allProps
 
 	const jsonFormsSubStates = getContext<JsonFormsSubStates>(JsonFormsSubStatesContextKey)
-	const dispatch           = getContext<Dispatch<CoreActions>>(DispatchContextKey)
+	const dispatch           = getContext<Dispatch<CoreActions>>(JsonFormsDispatchContextKey)
 	const parentUserStyles   = getContext("styles") || defaultStyles
 
 	if (!jsonFormsSubStates || !dispatch) {

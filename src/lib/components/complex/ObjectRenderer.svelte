@@ -13,7 +13,7 @@
 	} from "@jsonforms/core"
 	import type {ControlElementRendererProps} from "../../types.js"
 	import {getContext, onDestroy, onMount, untrack} from "svelte"
-	import {DispatchContextKey, DispatchRenderer, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
+	import {JsonFormsDispatchContextKey, DispatchRenderer, JsonFormsSubStatesContextKey} from "@keenmate/jsonforms-svelte"
 	import {createEmptyStyles, defaultStyles} from "../../styles/index.js"
 	import merge from "lodash/merge"
 	import {mapStateToControlWithDetailProps} from "@jsonforms/core"
@@ -31,7 +31,7 @@
 	    } = allProps
 
 	const jsonFormsSubStates = getContext<JsonFormsSubStates>(JsonFormsSubStatesContextKey)
-	const dispatch           = getContext<Dispatch<CoreActions>>(DispatchContextKey)
+	const dispatch           = getContext<Dispatch<CoreActions>>(JsonFormsDispatchContextKey)
 	const parentUserStyles   = getContext("styles") || defaultStyles
 
 	if (!jsonFormsSubStates || !dispatch) {
