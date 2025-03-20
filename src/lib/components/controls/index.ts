@@ -8,7 +8,7 @@ import {
 	type JsonFormsRendererRegistryEntry,
 	rankWith,
 	isNumberControl,
-	isDateTimeControl, isBooleanControl, isDateControl
+	isDateTimeControl, isBooleanControl, isDateControl, isOneOfEnumControl
 } from "@jsonforms/core"
 export {default as ControlWrapper} from "./ControlWrapper.svelte"
 import StringControlRenderer from "./StringControlRenderer.svelte"
@@ -55,7 +55,7 @@ const enumControlRendererEntry: JsonFormsRendererRegistryEntry = {
 
 const oneOfEnumControlRendererEntry: JsonFormsRendererRegistryEntry = {
 	renderer: EnumOneOfControlRenderer,
-	tester: rankWith(2, isEnumControl),
+	tester: rankWith(2, isOneOfEnumControl),
 };
 
 const dateControlRendererEntry: JsonFormsRendererRegistryEntry = {

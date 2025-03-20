@@ -2,7 +2,7 @@
 	import ControlWrapper from "./ControlWrapper.svelte"
 	import type {ControlElementRendererProps} from "../../types.js"
 	import {getContext, onDestroy, onMount, untrack} from "svelte"
-	import type {JsonFormsSubStates, Dispatch, CoreActions} from "@jsonforms/core"
+	import {type JsonFormsSubStates, type Dispatch, type CoreActions, mapStateToEnumControlProps} from "@jsonforms/core"
 	import {createId, isControl, mapDispatchToControlProps, removeId, mapStateToOneOfEnumControlProps} from "@jsonforms/core"
 	import {JsonFormsSubStatesContextKey, JsonFormsDispatchContextKey} from "@keenmate/jsonforms-svelte"
 	import {createEmptyStyles, defaultStyles} from "../../styles/index.js"
@@ -17,8 +17,7 @@
 		    enabled,
 		    renderers,
 		    cells,
-		    config,
-		    ...restProps
+		    config
 	    } = allProps
 
 	const jsonFormsSubStates = getContext<JsonFormsSubStates>(JsonFormsSubStatesContextKey)
@@ -35,9 +34,13 @@
 	let isFocused = $state(false)
 	let id = $state(undefined)
 
+	console.log("Enum control data", {
+		allProps,
+		mapStateToEnumControlProps: mapStateToEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps)
+	})
 	let control = $derived({
 		...allProps,
-		...mapStateToOneOfEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps),
+		...mapStateToEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps),
 		id: id,
 	})
 	let input = $derived({
@@ -121,7 +124,7 @@
 		onfocus={() => isFocused = true}
 		onblur={() => isFocused = false}
 	>
-		<option value="" class={styles.control.option} />
+		<option value="" class={styles.control.option}></option>
 
 		{#each control.options as item (item.value)}
 			<option

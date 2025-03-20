@@ -121,14 +121,15 @@
 		onfocus={() => isFocused = true}
 		onblur={() => isFocused = false}
 	>
-		<option value="" class={styles.control.option} />
+		<option value="" class={styles.control.option}></option>
 
-		{#each control.options as item (item.value)}
+		{#each control.options as item (item.const)}
 			<option
-				value={item.value}
-				label={item.label}
+				value={item.const}
 				class={styles.control.option}
-			/>
+			>
+				{item.title}
+			</option>
 		{/each}
 	</select>
 </ControlWrapper>
