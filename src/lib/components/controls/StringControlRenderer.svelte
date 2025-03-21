@@ -43,7 +43,7 @@
 		control: control,
 		...dispatchMethods,
 	})
-	const styles = $derived.by(() => {
+	let styles = $derived.by(() => {
 		const element = control.uischema
 		if (!element?.options?.styles) {
 			return parentUserStyles

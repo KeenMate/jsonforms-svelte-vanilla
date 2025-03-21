@@ -22,7 +22,7 @@
 
 	const jsonFormsSubStates = getContext<JsonFormsSubStates>(JsonFormsSubStatesContextKey)
 	const dispatch           = getContext<Dispatch<CoreActions>>(JsonFormsDispatchContextKey)
-	const parentUserStyles = getContext("styles") || defaultStyles
+	const parentUserStyles   = getContext("styles") || defaultStyles
 
 	if (!jsonFormsSubStates || !dispatch) {
 		throw new Error(
@@ -31,19 +31,19 @@
 	}
 
 	const dispatchMethods = mapDispatchToControlProps?.(dispatch)
-	let isFocused         = $state(false)
-	let id                = $state(undefined)
+	let isFocused        = $state(false)
+	let id               = $state(undefined)
 
-	let control = $derived({
+	let control  = $derived({
 		...restProps,
 		...mapStateToControlProps({jsonforms: jsonFormsSubStates}, restProps),
 		id: id,
 	})
-	let input   = $derived({
+	let input    = $derived({
 		control: control,
 		...dispatchMethods,
 	})
-	const styles = $derived.by(() => {
+	let styles = $derived.by(() => {
 		const element = control.uischema
 		if (!element?.options?.styles) {
 			return parentUserStyles

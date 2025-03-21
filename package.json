@@ -34,7 +34,7 @@
 	"dependencies": {
 		"lodash": "^4.17.21",
 		"@jsonforms/core": "^3.5.1",
-		"@keenmate/jsonforms-svelte": "^0.0.2"
+		"@keenmate/jsonforms-svelte": "^0.0.3"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",

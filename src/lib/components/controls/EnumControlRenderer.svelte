@@ -34,9 +34,11 @@
 	let isFocused = $state(false)
 	let id = $state(undefined)
 
-	console.log("Enum control data", {
-		allProps,
-		mapStateToEnumControlProps: mapStateToEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps)
+	$effect(() => {
+		console.log("Enum control data", {
+			allProps,
+			mapStateToEnumControlProps: mapStateToEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps)
+		})
 	})
 	let control = $derived({
 		...allProps,
@@ -47,7 +49,7 @@
 		control: control,
 		...dispatchMethods,
 	})
-	const styles = $derived.by(() => {
+	let styles = $derived.by(() => {
 		const element = control.uischema
 		if (!element?.options?.styles) {
 			return parentUserStyles

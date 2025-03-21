@@ -40,11 +40,14 @@
 		...mapStateToOneOfEnumControlProps({ jsonforms: jsonFormsSubStates }, allProps),
 		id: id,
 	})
+	$effect(() => {
+		console.log("Enum ONEOF control is: ", control)
+	})
 	let input = $derived({
 		control: control,
 		...dispatchMethods,
 	})
-	const styles = $derived.by(() => {
+	let styles = $derived.by(() => {
 		const element = control.uischema
 		if (!element?.options?.styles) {
 			return parentUserStyles
@@ -123,12 +126,12 @@
 	>
 		<option value="" class={styles.control.option}></option>
 
-		{#each control.options as item (item.const)}
+		{#each control.options as item (item.value)}
 			<option
-				value={item.const}
+				value={item.value}
 				class={styles.control.option}
 			>
-				{item.title}
+				{item.label}
 			</option>
 		{/each}
 	</select>
